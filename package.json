@@ -1,7 +1,15 @@
 {
-  "name": "vite-starter",
-  "private": true,
-  "version": "0.0.0",
+  "name": "lexicon-form",
+  "author": "Lex Kinser",
+  "description": "A simple credit card form to save",
+  "main": "dist/lexicon-form.min.js",
+  "module": "dist/lexicon-form.esm.js",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
@@ -11,6 +19,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.53.3",
     "vite": "^7.2.4"
   },
   "dependencies": {
