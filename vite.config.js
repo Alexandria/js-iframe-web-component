@@ -11,8 +11,6 @@ export default defineConfig({
       input: {
         // Main application entry point (Parent)
         main: resolve(__dirname, "index.html"),
-        // Iframe content entry point
-        iframe: resolve(__dirname, "iframe-content-form.html"),
       },
     },
   },
