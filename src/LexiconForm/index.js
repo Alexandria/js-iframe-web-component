@@ -82,6 +82,8 @@ export class LexiconForm extends HTMLElement {
 
   #handlePostmessage = async (event) => {
     const { cardNumber, cvv, action, validationToken } = event.data;
+    const backendServiceUrl =
+      "https://delightful-sfogliatella-9483bf.netlify.app/.netlify/functions/api/v1/submit";
     if (action !== "form-submit") return;
 
     if (validationToken !== this.#securityToken) {
@@ -94,7 +96,7 @@ export class LexiconForm extends HTMLElement {
     });
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/submit", {
+      const response = await fetch(backendServiceUrl, {
         method: "POST",
         body: JSON.stringify({ cardNumber, cvv }),
         headers: {
