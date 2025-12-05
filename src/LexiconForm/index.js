@@ -6,7 +6,6 @@ lexiconStyles.replaceSync(`
     :host {
       --container-background-color:aliceblue;
       --container-width:50vw;
-      --container-height:
 
     }
     
