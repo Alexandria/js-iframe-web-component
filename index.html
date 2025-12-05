@@ -3,14 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/src/main.js" defer></script>
-    <script src="/src/IntellerantForm/IntellerantForm.js" defer></script>
-    <title>Vite App</title>
+    <script type="module" src="/src/main.js" defer></script>
+    <script type="module" src="/src/LexiconForm/index.js" defer></script>
+    <title>Lexicon Form</title>
+    <style>
+      .visually-hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <lexicon-form
+        iframe-host="https://lexicon-iframe.netlify.app"
+      ></lexicon-form>
+      <div
+        id="payment-success"
+        class="visually-hidden"
+        style="padding: 20px; text-align: center"
+      >
+        <h3>✅ Payment Successful!</h3>
+        <p>Your transaction has been securely processed.</p>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const lexiconForm = document.querySelector("lexicon-form");
 
-    <intellerant-form></intellerant-form>
+          lexiconForm.addEventListener("lexicon-processing", (e) => {
+            console.log("STATUS: PROCESSING:", e.detail.message);
+            // Grey out when processing
+            lexiconForm.style.opacity = "0.5";
+          });
+
+          lexiconForm.addEventListener("lexicon-success", (e) => {
+            console.log("STATUS: SUCCESS!", e.detail);
+            document
+              .getElementById("payment-success")
+              .classList.remove("visually-hidden");
+            lexiconForm.remove();
+          });
+
+          lexiconForm.addEventListener("lexicon-failure", (e) => {
+            console.error("STATUS: FAILURE!", e.detail);
+            alert(`Error: ${e.detail.message}`);
+            lexiconForm.style.opacity = "1.0";
+          });
+        });
+      </script>
+    </div>
   </body>
 </html>
